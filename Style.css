@@ -1,0 +1,131 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content towards the top */
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url('https://img.freepik.com/free-photo/green-tea-bud-leaves-green-tea-plantations-morning_335224-955.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Makes the background image fixed during scroll */
+    box-sizing: border-box;
+}
+/* Ensure this CSS is in your Style.css file */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333333;
+    font-size: 1em;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Title Section */
+.title {
+    width: 100%;
+    text-align: center;
+    background-color: #007bff; /* Background color for title */
+    color: white; /* Text color for title */
+    padding: 20px 0;
+    font-size: 2.5em; /* Font size for title */
+    font-weight: bold;
+    margin-bottom: 30px; /* Space between title and content */
+}
+
+.container {
+    width: 85%; /* Slightly wider container */
+    max-width: 1200px; /* Increased maximum width for a wider container */
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the container with equal margins on both sides */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 10px;
+    color: #333333;
+    font-size: 2em; /* Adjusted font size */
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555555;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #555555;
+    margin-bottom: 8px;
+}
+
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333333;
+    font-size: 1em;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.2em;
+    }
+    .container {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+
+<body>
+    <div class="title">Crop Yield Prediction Using Machine Learning</div>
+    <div class="container">
+        <h1>Enter the Details Below</h1>
+        <h3>Please fill in the required information</h3>
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="Area">Area (in hectares):</label>
+                <input type="number" id="Area" name="Area" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Production">Production (in tons):</label>
+                <input type="number" id="Production" name="Production" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Annual_Rainfall">Annual Rainfall (in mm):</label>
+                <input type="number" id="Annual_Rainfall" name="Annual_Rainfall" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Fertilizer">Fertilizer (in kilograms):</label>
+                <input type="number" id="Fertilizer" name="Fertilizer" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Pesticide">Pesticide (in kilograms):</label>
+                <input type="number" id="Pesticide" name="Pesticide" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Crop">Crop:</label>
+                <select id="Crop" name="Crop" required>
+                    <option value="" disabled selected>Select a crop</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Wheat">Wheat</option>
+                    <option value="Cotton (lint)">Cotton (lint)</option>
+                    <option value="Maize">Maize</option>
+                    <option value="Sugarcane">Sugarcane</option>
+                    <option value="Soyabean">Soyabean</option>
+                    <option value="Potato">Potato</option>
+                    <option value="Groundnut (Peanut)">Groundnut (Peanut)</option>
+                    <option value="Chillies">Chillies</option>
+                    <option value="Rapeseed & Mustard">Rapeseed & Mustard</option>
+                    <option value="Onion">Onion</option>
+                </select>
+            </div>
+                <div class="form-group">
+                    <label for="Season">Season:</label>
+                    <select id="Season" name="Season" required>
+                        <option value="" disabled selected>Select a season</option>
+                        <option value="Whole Year">Whole Year</option>
+                        <option value="Kharif">Kharif</option>
+                        <option value="Rabi">Rabi</option>
+                        <option value="Autumn">Autumn</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+            </div>
+                <div class="form-group">
+    <label for="State">State:</label>
+    <select id="State" name="State" required>
+        <option value="" disabled selected>Select a state</option>
+        <option value="Assam">Assam</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="West Bengal">West Bengal</option>
+        <option value="Puducherry">Puducherry</option>
+        <option value="Goa">Goa</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Sikkim">Sikkim</option>
+    </select>
+</div>
+            <button type="submit">Predict Yield</button>
+        </form>
+
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        document.getElementById('predictionForm').onsubmit = async function(event) {
+            event.preventDefault();
+
+            let formData = {
+                Area: parseFloat(document.getElementById('Area').value),
+                Production: parseFloat(document.getElementById('Production').value),
+                Annual_Rainfall: parseFloat(document.getElementById('Annual_Rainfall').value),
+                Fertilizer: parseFloat(document.getElementById('Fertilizer').value),
+                Pesticide: parseFloat(document.getElementById('Pesticide').value),
+                Crop: document.getElementById('Crop').value,
+                Season: document.getElementById('Season').value,
+                State: document.getElementById('State').value
+            };
+
+            let response = await fetch('/predict', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(formData)
+            });
+
+            let result = await response.json();
+            let predictedYieldWithUnits = `${result.predicted_yield} tons`;
+            document.getElementById('result').innerText = `Predicted Yield: ${predictedYieldWithUnits}`;
+        };
+    </script>
+</body>
+
+</html>
